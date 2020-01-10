@@ -15,15 +15,20 @@
 #include <Arduino.h>
 
 // for solar-powered module use these settings:
-/*
-#define LORA_DEFAULT_CS_PIN        2
-#define LORA_DEFAULT_RESET_PIN     5
-#define LORA_DEFAULT_DIO0_PIN      16
-*/
-
-#define LORA_DEFAULT_CS_PIN        18
-#define LORA_DEFAULT_RESET_PIN     23
-#define LORA_DEFAULT_DIO0_PIN      26
+//
+//   LoRa.setPins(2, 5, 16);
+//   LoRa.setSPIFrequency(100E3);
+//
+// for TTGO LoRa32 V1.0 use these settings:
+//
+//   LoRa.setPins(18, 14, 26);
+//   LoRa.setSPIFrequency(100E3);
+//
+// for TTGO LoRa32 V2.1 use these settings:
+//
+//   LoRa.setPins(18, 23, 26);
+//   LoRa.setSPIFrequency(100E3);
+//
 
 class Layer1Class {
 public:
@@ -34,9 +39,6 @@ public:
     uint8_t* localAddress();
     int getTime();
     int loraInitialized();
-    int loraCSPin();
-    int resetPin();
-    int DIOPin();
     int init();
     int send_packet(char* data, int len);
 
@@ -50,9 +52,6 @@ private:
     uint8_t _hashTable[256][SHA1_LENGTH];
     int _hashEntry;
     int _loraInitialized;
-    int _csPin;
-    int _resetPin;
-    int _DIOPin;
 };
 
 extern Layer1Class Layer1;
